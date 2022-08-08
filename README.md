@@ -15,7 +15,9 @@ yes | pkg install git curl gzip
 
 These are all of the tools necessary to be able to start building packages in this repo.
 
-```
+```shell
+# Regular su doesn't work here, see: https://github.com/kisslinux/kiss/pull/298
+export KISS_SU=sudo
 cd core
 export KISS_PATH="$PWD"
 kiss build zlib xz pigz gmake bzip2
@@ -60,6 +62,20 @@ rm -rf /root/.cache/kiss/proc/
 ```
 
 I think that there will need to be a light patch to kiss to help facilitate this change.
+
+The above error is now resolved, since kiss is now patched, however there is
+still an issue when installing the `bsd-base` package.
+The package will fail to install with a mv error:
+```
+mv: rename /usr/bin/__kiss-tmp-bsd-base-chpass-* to /usr/bin/chpass: Operation not permitted
+```
+It's important to note that this is as root. I think this issue can be
+resolved rather easily, since I think the error is related to the above one.
+
+I think when making the tarball, it may be nesecary to run `chflags -R noschg <dir>`
+on the package directory, since by default some of the files will be made 'immutable',
+and thus cannot be moved, renamed, removed, etc. This is almost identical behavior
+to Linux's `chattr -R -i <dir>`, and I think this might be work adding to kiss in general.
 
 ## TODO
 * Use a git module for the upstream kiss repository, so less maintenance is required.
