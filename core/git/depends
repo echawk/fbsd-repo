@@ -1,2 +1,3 @@
 curl    make
+gmake   make
 zlib    make
