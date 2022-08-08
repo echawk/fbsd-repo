@@ -17,7 +17,9 @@ ln -sf usr/libexec "$1/libexec"
 
 
 make buildworld
+make buildkernel
 make DESTDIR="$1" installworld
+make DESTDIR="$1" installkernel
 
 # Now that we have all the programs/libraries in
 # our preferred location, we can unlink all those
