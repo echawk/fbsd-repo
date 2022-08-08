@@ -35,7 +35,32 @@ rm -Rf /usr/local/*
 # However, we now have to rebuild curl & it's dependants, since configure picked up some stuff
 /etc/ssl/update-certdata.sh
 kiss build curl git
+
+# Make sure that you are building the proper version of bsd-base
+# ie. If you are on a FreeBSD 13.0 system, edit bsd-base/version to reflect this.
+
+kiss b bsd-base
+# see below for installation issues.
+
 ```
+
+## Current error:
+Currently kiss can *build* bsd-base just fine, however it cannot *install* it as of yet.
+The package manager gets as far as printing the line:
+```
+Installing package (bsd-base\@13.0...)
+```
+And it is followed by failed removal attempts of the files under `/root/.cache/kiss/proc/*/`
+Most if not all of the files that it is trying to remove have special permissions.
+They are removable by running the following:
+```
+chflags -R noschg /root/.cache/kiss/proc/
+chmod 644 /root/.cache/kiss/proc/
+rm -rf /root/.cache/kiss/proc/
+```
+
+I think that there will need to be a light patch to kiss to help facilitate this change.
+
 ## TODO
 * Use a git module for the upstream kiss repository, so less maintenance is required.
 * Generate a rootfs
