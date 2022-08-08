@@ -1,0 +1,25 @@
+diff --git a/kiss b/kiss
+index 8038def..0bfe1dc 100755
+--- a/kiss
++++ b/kiss
+@@ -1699,8 +1699,18 @@ pkg_clean() {
+     # If _KISS_LVL is (1) we are the top-level process - the entire cache will
+     # be removed. If _KISS_LVL is any other value, remove only the tar directory.
+     case ${KISS_DEBUG:-0}-${_KISS_LVL:-1} in
+-        0-1) rm -rf "$proc" ;;
+-        0-*) rm -rf "$tar_dir"
++        0-1)
++            if [ $(uname) = FreeBSD ]; then
++                chflags -R noschg "$proc"
++                chmod -R 644 "$proc"
++            fi
++            rm -rf "$proc" ;;
++        0-*)
++            if [ $(uname) = FreeBSD ]; then
++                chflags -R noschg "$proc"
++                chmod -R 644 "$proc"
++            fi
++            rm -rf "$tar_dir" ;;
+     esac
+ }
+ 
