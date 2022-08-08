@@ -8,7 +8,7 @@ set -- pigz.o yarn.o try.o
 for f do
     "$CC" -c -o "$f" "${f%%.o}.c" $CPPFLAGS -DNOZOPFLI $CFLAGS
 done
-"$CC" -static -o pigz "$@" $CPPFLAGS $CFLAGS -lz $LDFLAGS
+"$CC" -static -o pigz "$@" $CPPFLAGS $CFLAGS -lz -lpthread $LDFLAGS
 
 mkdir -p \
     "$DESTDIR/usr/bin" \
