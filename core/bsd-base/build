@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-cd usr/src/
+cd src/
 
 # Create temporary links so that every file
 # is created into the same namespace.
