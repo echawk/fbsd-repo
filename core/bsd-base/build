@@ -16,8 +16,8 @@ ln -sf usr/lib     "$1/lib"
 ln -sf usr/libexec "$1/libexec"
 
 
-make buildworld
-make buildkernel
+make DESTDIR="$1" buildworld
+make DESTDIR="$1" buildkernel
 make DESTDIR="$1" installworld
 make DESTDIR="$1" installkernel
 
