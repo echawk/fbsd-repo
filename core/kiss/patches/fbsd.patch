@@ -1,25 +1,19 @@
 diff --git a/kiss b/kiss
-index 8038def..0bfe1dc 100755
+index 8038def..37ebe0d 100755
 --- a/kiss
 +++ b/kiss
-@@ -1699,8 +1699,18 @@ pkg_clean() {
-     # If _KISS_LVL is (1) we are the top-level process - the entire cache will
-     # be removed. If _KISS_LVL is any other value, remove only the tar directory.
-     case ${KISS_DEBUG:-0}-${_KISS_LVL:-1} in
--        0-1) rm -rf "$proc" ;;
--        0-*) rm -rf "$tar_dir"
-+        0-1)
-+            if [ $(uname) = FreeBSD ]; then
-+                chflags -R noschg "$proc"
-+                chmod -R 644 "$proc"
-+            fi
-+            rm -rf "$proc" ;;
-+        0-*)
-+            if [ $(uname) = FreeBSD ]; then
-+                chflags -R noschg "$proc"
-+                chmod -R 644 "$proc"
-+            fi
-+            rm -rf "$tar_dir" ;;
-     esac
- }
+@@ -1497,6 +1497,14 @@ pkg_install() {
+     # if needed.
+     decompress "$tar_file" | tar xf -
  
++    # FIXME: make sure to use 'as_user', since this command requires root.
++    # Fix a bug when FreeBSD's bsd-base, since some of the files are marked
++    # with a flag that makes them immutable.
++    case "$(uname -s)" in
++        FreeBSD) chflags -R noschg "$PWD";;
++        #Linux) chattr -i -R "$PWD";;
++    esac
++
+     # Naively assume that the existence of a manifest file is all that
+     # determines a valid KISS package from an invalid one. This should be a
+     # fine assumption to make in 99.99% of cases.
