@@ -77,6 +77,15 @@ on the package directory, since by default some of the files will be made 'immut
 and thus cannot be moved, renamed, removed, etc. This is almost identical behavior
 to Linux's `chattr -R -i <dir>`, and I think this might be work adding to kiss in general.
 
+Update:
+The hook in the root of this repo fixes the issue on the package side, as it
+now will let you install it with no problem. However, when trying to install
+it on an already live FreeBSD system, you encounter the above error. This is
+because the package manager is trying to over write one of these immutable
+files. Also strangely, the `chflags -R noschg` doesn't seem to preserve setuid
+bits? I need to investigate this more, and I may have to really get into the
+weeds...
+
 ## TODO
 * Use a git module for the upstream kiss repository, so less maintenance is required.
 * Generate a rootfs
