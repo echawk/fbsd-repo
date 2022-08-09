@@ -1,0 +1,11 @@
+#!/bin/sh
+
+case "$1" in
+    pre-install)
+        case "$2" in
+            bsd-base)
+                chflags -R noschg "$3"
+            ;;
+        esac
+    ;;
+esac
