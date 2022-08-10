@@ -15,15 +15,17 @@ On the FreeBSD machine (and as root), install git with `pkg`:
 # Install git, since it pulls in curl.
 yes | pkg install git
 
-export KISS_SU=sudo
-export MAKEFLAGS="$(sysctl -n hw.ncpu)"
-
 git clone https://github.com/ehawkvu/fbsd-repo
 git clone https://github.com/kiss-community/kiss
 
+# Setup our environment for kiss.
+export KISS_SU=sudo
+export MAKEFLAGS="$(sysctl -n hw.ncpu)"
 export PATH="$PWD/kiss:$PATH"
 export KISS_PATH="$PWD/fbsd-repo/core"
 export KISS_HOOK="$PWD/fbsd-repo/hook"
+
+# Download everything now, since we won't have curl in a moment.
 kiss d bsd-base curl git gmake kiss
 
 # Update certdata so our curl works
