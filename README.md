@@ -29,7 +29,7 @@ export KISS_HOOK="$PWD/fbsd-repo/hook"
 kiss d bsd-base curl git gmake kiss
 
 # Update certdata so our curl works
-sh $PWD/fbsd-repo/openssl/files/update-certdata.sh
+sh $PWD/fbsd-repo/libretls/files/update-certdata.sh
 
 # Remove stuff from pkg.
 rm -Rf /var/db/pkg/*
