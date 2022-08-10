@@ -125,5 +125,5 @@ the exact log. No, I don't know what caused it.
 
 ## TODO
 * [ ] Use a git module for the upstream kiss repository, so less maintenance is required.
-* [ ] Generate a rootfs
+* [x] Generate a rootfs
 * [ ] Make sure you can perform an installation via rootfs (& add docs on how to)
