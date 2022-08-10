@@ -7,7 +7,7 @@ An experimental kiss repo for [FreeBSD](https://freebsd.org).
 The installation currently requires you to hijack an already existing
 FreeBSD installation. This will change in the future.
 
-On the FreeBSD machine (and as root), install git, curl & gzip with `pkg`:
+On the FreeBSD machine (and as root), install git with `pkg`:
 
 ```shell
 # Install git, since it pulls in curl.
@@ -88,6 +88,7 @@ files. Also strangely, the `chflags -R noschg` doesn't seem to preserve setuid
 bits? I need to investigate this more, and I may have to really get into the
 weeds...
 
+Update:
 Installation of bsd-base required the `cp` calls in `pkg_install()` in `kiss` to be followed by `|| true` just so that installation could finish successfully. There are many symlinks that just fail to install properly with this particular package, here's the errors:
 
 ```
@@ -122,6 +123,6 @@ the exact log. No, I don't know what caused it.
 
 
 ## TODO
-* Use a git module for the upstream kiss repository, so less maintenance is required.
-* Generate a rootfs
-* Make sure you can perform an installation via rootfs (& add docs on how to)
+* [ ] Use a git module for the upstream kiss repository, so less maintenance is required.
+* [ ] Generate a rootfs
+* [ ] Make sure you can perform an installation via rootfs (& add docs on how to)
