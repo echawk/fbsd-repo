@@ -86,6 +86,25 @@ cp: cannot overwrite directory /tmp/rootfs/usr/test/sys/pjdfstest/./tests with n
 Yes the repeat lines did occur in the actual output. This is
 the exact log. No, I don't know what caused it.
 
+Update:
+
+Just ran a build with the new `bsd-base` package. Here are the remaining errors:
+
+```
+cp: cannot overwrite directory /tmp/rootfs/usr/lib/./include with non-directory /root/.cache/kiss/proc/66486/extract/bsd-base/usr/lib/include
+cp: cannot overwrite directory /tmp/rootfs/usr/share/nls/./POSIX with non-directory /root/.cache/kiss/proc/66486/extract/bsd-base/usr/share/nls/POSIX
+cp: cannot overwrite direcotry /tmp/rootfs/usr/share/nls/./en_US.US_ASCII with non-directory /root/.cache/kiss/proc/66486/extract/bsd-base/usr/share/nls/en_US.US_ASCII
+cp: symlink: ../local/tests: File exists
+cp: cannot overwrite directory /tmp/rootfs/usr/tests/sys/pjdfstest/./tests with non-directory /root/.cache/kiss/proc/66486/extract/bsd-base/usr/test/sys/pjdfstest/tests
+cp: cannot overwrite directory /tmp/rootfs/usr/lib/./include with non-directory /root/.cache/kiss/proc/66486/extract/bsd-base/usr/lib/include
+cp: cannot overwrite directory /tmp/rootfs/usr/share/nls/./POSIX with non-directory /root/.cache/kiss/proc/66486/extract/bsd-base/usr/share/nls/POSIX
+cp: cannot overwrite direcotry /tmp/rootfs/usr/share/nls/./en_US.US_ASCII with non-directory /root/.cache/kiss/proc/66486/extract/bsd-base/usr/share/nls/en_US.US_ASCII
+cp: symlink: ../local/tests: File exists
+cp: cannot overwrite directory /tmp/rootfs/usr/tests/sys/pjdfstest/./tests with non-directory /root/.cache/kiss/proc/66486/extract/bsd-base/usr/test/sys/pjdfstest/tests
+```
+
+Much more manageable!
+
 ## Updating bsd-base
 
 If you want to stay on the same release for it's entire cycle, its possible
