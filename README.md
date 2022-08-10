@@ -33,15 +33,26 @@ sh $PWD/fbsd-repo/openssl/files/update-certdata.sh
 rm -Rf /var/db/pkg/*
 rm -Rf /usr/local/*
 
-kiss b curl
-kiss b gmake
-kiss b git
-kiss b kiss
+# Build and install core/ except for bsd-base.
+kiss b curl gmake git kiss
+kiss i curl gmake git kiss
 
 # Do NOT install this package yet, there's still plenty of
 # issues with it (see below).
 # You're welcome to build it, however.
 kiss b bsd-base
+
+# If you *really* want to install bsd-base, you first have
+# to remove the immutability flag from any file on the system,
+# else suffer an actually failed install.
+# Yes I know this seems wrong, but FreeBSD doesn't seem to mind :)
+chflags -R noschg /
+
+# To actually install the package, follow the steps in the section
+# below to patch the kiss package manager, so that any installation
+# will work (add `|| true` after the appropriate cp calls).
+# Once that's done you can run:
+kiss i bsd-base
 ```
 
 ### Generating rootfs
