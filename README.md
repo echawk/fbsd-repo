@@ -1,5 +1,7 @@
 # fbsd-repo
 
+![downloads](https://img.shields.io/github/downloads/ehawkvu/fbsd-repo/total.svg)
+
 An experimental kiss repo for [FreeBSD](https://freebsd.org).
 
 ## Installation (WIP)
