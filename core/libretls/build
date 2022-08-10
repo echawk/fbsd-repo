@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+./configure \
+    --prefix=/usr \
+    --with-openssl=/usr
+
+make
+make install
+
+# Since openssl is provided via bsd-base, ship `update-certdata.sh` here.
+mkdir -p "$1/etc/ssl"
+cp -f update-certdata.sh "$1/etc/ssl"
