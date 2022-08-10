@@ -21,6 +21,7 @@ git clone https://github.com/kiss-community/kiss
 
 export PATH="$PWD/kiss:$PATH"
 export KISS_PATH="$PWD/fbsd-repo/core"
+export KISS_HOOK="$PWD/fbsd-repo/hook"
 kiss d bsd-base curl git gmake kiss
 
 # Update certdata so our curl works
