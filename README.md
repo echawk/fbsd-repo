@@ -86,6 +86,19 @@ cp: cannot overwrite directory /tmp/rootfs/usr/test/sys/pjdfstest/./tests with n
 Yes the repeat lines did occur in the actual output. This is
 the exact log. No, I don't know what caused it.
 
+## Updating bsd-base
+
+If you want to stay on the same release for it's entire cycle, its possible
+to modify the `bsd-base` package to use the snapshot links of the STABLE
+branch. For example, to update to the latest snapshot release of 13.1, edit
+`bsd-base/source` to contain the following:
+
+```
+https://download.freebsd.org/snapshots/amd64/13.1-STABLE/src.txz
+```
+
+The releases are in bsd-base mainly to keep big updates at a minimum since
+building `bsd-base` is quite a process, since it is the *entire* system.
 
 ## TODO
 * [ ] Use a git module for the upstream kiss repository, so less maintenance is required.
