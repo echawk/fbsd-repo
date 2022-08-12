@@ -1,0 +1,6 @@
+[submodule "kiss-repo"]
+	path = repo-kiss
+	url = https://github.com/kiss-community/repo
+[submodule "kiss-xorg"]
+	path = repo-xorg
+	url = https://github.com/ehawkvu/kiss-xorg
