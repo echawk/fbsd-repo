@@ -118,6 +118,26 @@ cp: cannot overwrite directory /tmp/rootfs/usr/tests/sys/pjdfstest/./tests with 
 
 Much more manageable!
 
+Update:
+I haven't been able to resolve the above issue yet, however I think ti should be pretty
+easy to fix with an additional `post-build` hook. I'd like to have something automatic,
+but I'd settle for a couple of `rm`'s.
+
+## Usage
+
+First, enable the 'fake' repository, as it provides packages that satisfy dependencies.
+
+```
+export KISS_PATH="$KISS_PATH:/path/to/fbsd-repo/fake"
+```
+
+Once done, you can then append 'extra':
+
+```
+export KISS_PATH="$KISS_PATH:/path/to/fbsd-repo/extra"
+```
+
+
 ## Updating bsd-base
 
 If you want to stay on the same release for it's entire cycle, its possible
