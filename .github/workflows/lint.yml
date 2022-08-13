@@ -11,5 +11,5 @@ jobs:
       - name: Run Shellcheck.
         run: |
           shopt -s nullglob
-          shellcheck */*/build */*/post-install
+          shellcheck */*/build
 
