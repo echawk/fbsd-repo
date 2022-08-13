@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+gmake
+gmake \
+    PREFIX=/usr \
+    BINOWN="$(id -u)" \
+    BINGRP="$(id -g)" \
+    install

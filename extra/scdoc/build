@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+gmake PREFIX=/usr
+gmake PREFIX=/usr install
