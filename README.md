@@ -21,12 +21,12 @@ git clone https://github.com/kiss-community/kiss
 # Setup our environment for kiss.
 export KISS_SU=sudo
 export MAKEFLAGS="$(sysctl -n hw.ncpu)"
-export PATH="$PWD/kiss:$PATH"
+export PATH="$PATH:$PWD/kiss"
 export KISS_PATH="$PWD/fbsd-repo/core"
 export KISS_HOOK="$PWD/fbsd-repo/hook"
 
 # Download everything now, since we won't have curl in a moment.
-kiss d bsd-base curl git gmake kiss
+kiss d bsd-base curl git gmake kiss libretls
 
 # Update certdata so our curl works
 sh $PWD/fbsd-repo/libretls/files/update-certdata.sh
@@ -36,8 +36,8 @@ rm -Rf /var/db/pkg/*
 rm -Rf /usr/local/*
 
 # Build and install core/ except for bsd-base.
-kiss b curl gmake git kiss
-kiss i curl gmake git kiss
+kiss b curl gmake git kiss libretls
+kiss i curl gmake git kiss libretls
 
 # Do NOT install this package yet, there's still plenty of
 # issues with it (see below).
@@ -125,9 +125,10 @@ but I'd settle for a couple of `rm`'s.
 
 ## Usage
 
-First, enable the 'fake' repository, as it provides packages that satisfy dependencies.
+First, enable the 'core' and 'fake' repositories, as it provides packages that satisfy dependencies.
 
 ```
+export KISS_PATH="/path/to/fbsd-repo/core"
 export KISS_PATH="$KISS_PATH:/path/to/fbsd-repo/fake"
 ```
 
@@ -136,7 +137,6 @@ Once done, you can then append 'extra':
 ```
 export KISS_PATH="$KISS_PATH:/path/to/fbsd-repo/extra"
 ```
-
 
 ## Updating bsd-base
 
