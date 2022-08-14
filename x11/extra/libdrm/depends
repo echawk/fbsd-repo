@@ -1,0 +1,4 @@
+libpciaccess
+libpthread-stubs
+meson         make
+pkgconf       make

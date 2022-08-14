@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+export DESTDIR="$1"
+
+
+./configure \
+    --prefix=/usr
+
+gmake
+gmake install
+
+# Remove HTML documentation.
+rm -rf "$1/usr/share/doc"
