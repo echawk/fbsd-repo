@@ -1,0 +1,6 @@
+libpthread-stubs
+libXau
+pkgconf make
+python  make
+xcb-proto
+xorg-util-macros
