@@ -6,3 +6,13 @@ make DESTDIR="$1" buildworld
 make DESTDIR="$1" buildkernel
 make DESTDIR="$1" installworld
 make DESTDIR="$1" installkernel
+
+# Remove 'blacklisted' cacerts, since this is managed by us.
+rm -rf "${1:?}/etc/ssl/blacklisted"
+rm -rf "${1:?}/usr/share/certs/blacklisted"
+
+# Remove some broken files.
+rm -rf "${1:?}/usr/lib/./include"
+rm -rf "${1:?}/usr/share/nls/./POSIX"
+rm -rf "${1:?}/usr/share/nls/./en_US.US_ASCII"
+rm -rf "${1:?}/usr/tests"
