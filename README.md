@@ -153,6 +153,6 @@ The releases are in bsd-base mainly to keep big updates at a minimum since
 building `bsd-base` is quite a process, since it is the *entire* system.
 
 ## TODO
-* [ ] Use a git module for the upstream kiss repository, so less maintenance is required.
+* [x] Use a git module for the upstream kiss repository, so less maintenance is required.
 * [x] Generate a rootfs
 * [ ] Make sure you can perform an installation via rootfs (& add docs on how to)
