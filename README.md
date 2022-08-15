@@ -123,6 +123,9 @@ I haven't been able to resolve the above issue yet, however I think ti should be
 easy to fix with an additional `post-build` hook. I'd like to have something automatic,
 but I'd settle for a couple of `rm`'s.
 
+Update:
+The package now installs without errors! You no longer need to do the hacky `|| true` in kiss!
+
 ## Usage
 
 First, enable the 'core' and 'fake' repositories, as it provides packages that satisfy dependencies.
