@@ -12,8 +12,13 @@ rm -rf "${1:?}/etc/ssl/blacklisted"
 rm -rf "${1:?}/usr/share/certs/blacklisted"
 
 # Remove some broken files.
+# TODO: Move this to the hook, and try to have this be automatic.
+# Randomly broken symlinks?
 rm -rf "${1:?}/usr/lib/./include"
 rm -rf "${1:?}/usr/share/nls/./POSIX"
 rm -rf "${1:?}/usr/share/nls/./en_US.US_ASCII"
+# More headache than it's worth.
 rm -rf "${1:?}/usr/tests"
 rm -rf "${1:?}/usr/lib/debug"
+# This file is symlink to a file under /usr/tests, so remove it.
+rm -rf "${1:?}/usr/lib/libxo/encoder/test.enc"
